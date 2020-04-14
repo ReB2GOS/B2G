@@ -1,7 +1,9 @@
 #!/bin/bash
 
 REPO=${REPO:-./repo}
-sync_flags=""
+sync_flags="-j16"
+REPO_INIT_FLAGS="--repo-url=git://codeaurora.org/tools/repo.git --repo-branch=caf-stable --depth=1"
+
 
 repo_sync() {
 	rm -rf .repo/manifest* &&
@@ -30,8 +32,8 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/kaiostech/manifests"}
-BRANCH=${BRANCH:-master}
+GITREPO=${GITREPO:-"git://github.com/ReB2GOS/manifests"}
+BRANCH=${BRANCH:-exp}
 
 while [ $# -ge 1 ]; do
 	case $1 in
