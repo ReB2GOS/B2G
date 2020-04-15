@@ -2,7 +2,7 @@
 
 REPO=${REPO:-./repo}
 sync_flags="-j16"
-REPO_INIT_FLAGS="--repo-url=git://codeaurora.org/tools/repo.git --repo-branch=caf-stable --depth=1"
+REPO_INIT_FLAGS="--repo-url=git://codeaurora.org/tools/repo.git  --depth=1"
 
 
 repo_sync() {
