@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPO=${REPO:-./repo}
-sync_flags="-j16"
+#sync_flags="-j16"
 REPO_INIT_FLAGS="--repo-url=git://codeaurora.org/tools/repo.git  --depth=1"
 
 
