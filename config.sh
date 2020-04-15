@@ -81,12 +81,19 @@ case "$1" in
 	echo PRODUCT_NAME=aosp_arm >> .tmp-config &&
 	repo_sync $1
 	;;
+
+"onyx")
+	echo PRODUCT_NAME=lineage_onyx >> .tmp-config &&
+	repo_sync $1
+	;;
+	
 *)
 	echo "Usage: $0 [-cdflnq] [-j <jobs>] [--force-sync] (device name)"
 	echo "Flags are passed through to |./repo sync|."
 	echo
 	echo Valid devices to configure are:
 	echo - emulator-10
+	echo - onyx
 	exit -1
 	;;
 esac
