@@ -83,7 +83,7 @@ case "$1" in
 	;;
 
 "onyx")
-	echo PRODUCT_NAME=lineage_onyx >> .tmp-config &&
+	echo PRODUCT_NAME=lemon_onyx >> .tmp-config &&
 	repo_sync $1
 	;;
 	
