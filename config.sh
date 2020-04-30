@@ -7,6 +7,8 @@ REPO_INIT_FLAGS="--depth=1"
 
 repo_sync() {
 	rm -rf .repo/manifest* &&
+	curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o repo &&
+	chmod +x repo &&
 	$REPO init -u $GITREPO -b $BRANCH -m $1.xml $REPO_INIT_FLAGS &&
 	$REPO sync $sync_flags $REPO_SYNC_FLAGS
 	ret=$?
