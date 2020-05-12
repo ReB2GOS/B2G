@@ -5,6 +5,7 @@ Boot to Gecko aims to create a complete, standalone operating system for the ope
 You can read more about B2G here:
 
   http://wiki.mozilla.org/B2G
+  
   https://developer.mozilla.org/en-US/docs/Mozilla/B2G_OS
 
 Follow us on twitter: @Boot2Gecko
@@ -35,11 +36,7 @@ Discuss with Developers:
 
 Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use the one built by KaiOS, here are the steps to build your own:
 1. Download the ndk source:
-`repo init -u https://android.googlesource.com/platform/manifest -b ndk-release-r20`
-2. change `__ndk` to `__` in `external/libcxx/include/__config`:
-```diff
--#define _LIBCPP_NAMESPACE _LIBCPP_CONCAT(__ndk,_LIBCPP_ABI_VERSION)
-+#define _LIBCPP_NAMESPACE _LIBCPP_CONCAT(__,_LIBCPP_ABI_VERSION)
-```
-3. Build the ndk:
+`repo init -u https://github.com/ReB2GOS/manifests -b ndk --depth=1`
+
+2. Build the ndk:
 `python ndk/checkbuild.py --no-build-tests`
