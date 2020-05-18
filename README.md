@@ -28,11 +28,12 @@ Discuss with Developers:
 
 1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh emulator-10`
 2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
+   
    Note: On MacOS Please Re-building your own NDK or use NDK advanced by Cicada : 
    
          `export LOCAL_NDK_BASE_URL='https://github.com/ReB2GOS/Note/releases/download/ndk/android-ndk-0'`
          
-         And you need do `mv  ~/.mozbuild/android-ndk-r20b  ~/.mozbuild/android-ndk-r20b-canary` after step3.
+      And you need do `mv  ~/.mozbuild/android-ndk-r20b  ~/.mozbuild/android-ndk-r20b-canary` after step3.
          
 3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
 4. Build: `./build.sh`
