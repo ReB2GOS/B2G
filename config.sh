@@ -1,7 +1,9 @@
 #!/bin/bash
 
 REPO=${REPO:-./repo}
-sync_flags=""
+#sync_flags="-j16"
+REPO_INIT_FLAGS="--depth=1"
+
 
 repo_sync() {
 	rm -rf .repo/manifest* &&
@@ -30,8 +32,8 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/kaiostech/manifests"}
-BRANCH=${BRANCH:-master}
+GITREPO=${GITREPO:-"git://github.com/ReB2GOS/manifests"}
+BRANCH=${BRANCH:-exp}
 
 while [ $# -ge 1 ]; do
 	case $1 in
@@ -86,6 +88,12 @@ case "$1" in
 	echo BINSUFFIX=64 >> .tmp-config &&
 	repo_sync emulator-10
 	;;
+
+"onyx")
+	echo PRODUCT_NAME=lemon_onyx >> .tmp-config &&
+	repo_sync $1
+	;;
+	
 *)
 	echo "Usage: $0 [-cdflnq] [-j <jobs>] [--force-sync] (device name)"
 	echo "Flags are passed through to |./repo sync|."
@@ -93,6 +101,7 @@ case "$1" in
 	echo Valid devices to configure are:
 	echo - emulator-10-arm
 	echo - emulator-10-x86_64
+	echo - onyx
 	exit -1
 	;;
 esac
