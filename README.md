@@ -5,6 +5,7 @@ Boot to Gecko aims to create a complete, standalone operating system for the ope
 You can read more about B2G here:
 
   http://wiki.mozilla.org/B2G
+  
   https://developer.mozilla.org/en-US/docs/Mozilla/B2G_OS
 
 Follow us on twitter: @Boot2Gecko
@@ -27,7 +28,22 @@ Discuss with Developers:
 
 1. Fetch the code: `REPO_INIT_FLAGS="--depth=1" ./config.sh emulator-10`
 2. Setup your environment to fetch the custom NDK: `export LOCAL_NDK_BASE_URL='ftp://ftp.kaiostech.com/ndk/android-ndk'`
+   
+   Note: On MacOS Please Re-building your own NDK or use NDK advanced by Cicada : 
+   
+         `export LOCAL_NDK_BASE_URL='https://github.com/ReB2GOS/Note/releases/download/ndk/android-ndk-0'`
+         
+      And you need do `mv  ~/.mozbuild/android-ndk-r20b  ~/.mozbuild/android-ndk-r20b-canary` after step3.
+         
 3. Install Gecko dependencies: `cd gecko && ./mach bootstrap`, choose option 4 (Android Geckoview).
 4. Build: `./build.sh`
 5. Run the emulator: `source build/envsetup.sh && lunch aosp_arm-userdebug && emulator -writable-system -selinux permissive`
 
+# Re-building your own NDK
+
+Because it's using a different c++ namespace than the AOSP base, we can't use the prebuilt NDK from Google. If you can't use the one built by KaiOS, here are the steps to build your own:
+1. Download the ndk source:
+`repo init -u https://github.com/ReB2GOS/manifests -b ndk --depth=1`
+
+2. Build the ndk:
+`python ndk/checkbuild.py --no-build-tests`
