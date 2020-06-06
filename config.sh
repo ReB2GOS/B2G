@@ -1,7 +1,6 @@
 #!/bin/bash
 
 REPO=${REPO:-./repo}
-#sync_flags="-j16"
 REPO_INIT_FLAGS="--depth=1"
 
 
@@ -73,7 +72,6 @@ if [ -n "$2" ]; then
 fi
 
 echo MAKE_FLAGS=-j$((CORE_COUNT + 2)) > .tmp-config
-echo GECKO_OBJDIR=$PWD/objdir-gecko >> .tmp-config
 echo DEVICE_NAME=$1 >> .tmp-config
 
 case "$1" in
@@ -88,9 +86,17 @@ case "$1" in
 	echo BINSUFFIX=64 >> .tmp-config &&
 	repo_sync emulator-10
 	;;
+	
+"sargo")
+	echo PRODUCT_NAME=aosp_sargo >> .tmp-config &&
+	echo TARGET_NAME=sargo >> .tmp-config &&
+	echo BINSUFFIX=64 >> .tmp-config &&
+	repo_sync $1
+	;;
 
 "onyx")
 	echo PRODUCT_NAME=lemon_onyx >> .tmp-config &&
+	echo TARGET_NAME=onyx >> .tmp-config &&
 	repo_sync $1
 	;;
 	
@@ -105,6 +111,8 @@ case "$1" in
 	exit -1
 	;;
 esac
+
+echo GECKO_OBJDIR=$PWD/objdir-gecko-\$PRODUCT_NAME >> .tmp-config
 
 if [ $? -ne 0 ]; then
 	echo Configuration failed
