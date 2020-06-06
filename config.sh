@@ -1,7 +1,6 @@
 #!/bin/bash
 
 REPO=${REPO:-./repo}
-#sync_flags="-j16"
 REPO_INIT_FLAGS="--depth=1"
 
 
@@ -32,7 +31,7 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/ReB2GOS/manifests"}
+GITREPO=${GITREPO:-"git://github.com/b2gos/manifests"}
 BRANCH=${BRANCH:-exp}
 
 while [ $# -ge 1 ]; do
@@ -86,6 +85,13 @@ case "$1" in
         echo TARGET_NAME=generic_x86_64 >> .tmp-config &&
 	echo BINSUFFIX=64 >> .tmp-config &&
 	repo_sync emulator-10
+	;;
+	
+"sargo")
+	echo PRODUCT_NAME=aosp_sargo >> .tmp-config &&
+	echo TARGET_NAME=sargo >> .tmp-config &&
+	echo BINSUFFIX=64 >> .tmp-config &&
+	repo_sync $1
 	;;
 
 "onyx")
