@@ -31,7 +31,7 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/b2gos/manifests"}
+GITREPO=${GITREPO:-"git://github.com/ReB2GOS/manifests"}
 BRANCH=${BRANCH:-exp}
 
 while [ $# -ge 1 ]; do
@@ -96,6 +96,7 @@ case "$1" in
 
 "onyx")
 	echo PRODUCT_NAME=lemon_onyx >> .tmp-config &&
+	echo TARGET_NAME=onyx >> .tmp-config &&
 	repo_sync $1
 	;;
 	
